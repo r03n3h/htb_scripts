@@ -1,4 +1,4 @@
-# hackthewereld
+# HTB Scripts
 HTB startup script
 
 Just chmod script and then use :
