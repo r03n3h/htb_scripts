@@ -1,0 +1,2 @@
+# hackthewereld
+HTB startup script
