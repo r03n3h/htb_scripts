@@ -27,8 +27,7 @@ figlet -c $LOC
 echo "Check open ports.....just wait"
 ports=$(nmap -p- --min-rate=1000 -T4 $IP | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)
 echo "Start nmap scan....just wait again"
-# nmap -sC -sV $IP > ~/$HTBfolder/$LOC/scans/nmap.result
-nmap -p$ports -sC -sV $IP > ~/$HTBfolder/$LOC/scans/nmap.result
+nmap -p$ports -sC -sV $IP | tee ~/$HTBfolder/$LOC/scans/nmap.result
 echo "nmap Report Complete: ~/$HTBfolder/$LOC/nmapresult"
 
 echo "Putting rules to host file, need sudo"
@@ -37,9 +36,10 @@ echo "Added $LOC.htb on $IP to /etc/hosts"
 
 echo Notes for HTB machine : $LOC > ~/$HTBfolder/$LOC/$LOC.notes
 echo  >> ~/$HTBfolder/$LOC/$LOC.notes
-echo nmap results : ~/$HTBfolder/$LOC/scans/nmapresult >> ~/$HTBfolder/$LOC/$LOC.notes
-nmap $IP -Pn >> ~/$HTBfolder/$LOC/$LOC.notes  
 echo "Notes file created ~/$HTBfolder/$LOC/$LOC.notes"
 
 echo "Happy Hacking by"
 figlet r03n
+
+cd ~/$HTBfolder/$LOC
+exec bash
